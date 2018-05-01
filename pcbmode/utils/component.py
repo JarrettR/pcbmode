@@ -53,7 +53,10 @@ class Component():
         footprint_dict = None
         for path in paths:
             if os.path.isfile(path):
-                footprint_dict = dictFromJsonFile(path)
+                try:
+                    footprint_dict = dictFromJsonFile(path)
+                except:
+                    msg.error("Cannot parse JSON at file %s." % path)
                 break
 
         if footprint_dict == None:
